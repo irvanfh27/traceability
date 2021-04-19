@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Stockpile;
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $stockpile = [
+            "id" => "places",
+            "type" => "symbol",
+            "source" => [
+                "type" => "geojson",
+                "data" => [
+                    "type" => "FeatureCollection",
+                    "features" => \App\Http\Resources\StockpileMapsResource::collection(Stockpile::all())
+                ]
+            ],
+            "layout" => [
+                "icon-image" => "cat",
+                "icon-size" => 0.25,
+                'text-field' => ['get', 'title'],
+                'text-offset' => [0, 1.25],
+
+            ]
+        ];
+
+        $stockpileJson = collect($stockpile)->toJson();
+
+        // return $stockpileJson;
+
+        return view('home', compact('stockpileJson'));
+    }
+}

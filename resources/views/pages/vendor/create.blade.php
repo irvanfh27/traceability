@@ -1,0 +1,199 @@
+@extends('layouts.app')
+@section('title', 'Add/Edit Vendor')
+@section('content')
+<div class="card mt-3 mr-5" style="border-radius: 2rem;padding:15px 15px 15px 15px">
+
+    {!! Form::open(['route' => 'vendor.store','enctype'=> 'multipart/form-data']) !!}
+    @csrf
+    <input type="hidden" name="vendor_id" value="{{ request()->route()->vendor }}">
+
+
+    @isset($vendorHeader)
+    <div class="form-group row">
+        <label for="vendor_name"
+        class="col-md-4 col-form-label text-md-right">Vendor Name</label>
+
+        <div class="col-md-6">
+            <input id="vendor_name" type="text" class="form-control "
+            name="" value="{{ $vendorHeader->vendor_name }}" disabled>
+        </div>
+    </div>
+    @endisset
+
+
+    <div class="form-group row">
+        <label for="pic_name"
+        class="col-md-4 col-form-label text-md-right">PIC Name</label>
+
+        <div class="col-md-6">
+            <input id="pic_name" type="text" class="form-control @error('pic_name') is-invalid @enderror"
+            name="pic_name" value="{{ isset($vendor->pic_name ) ? $vendor->pic_name :  old('pic_name') }}">
+            @error('pic_name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="province"
+        class="col-md-4 col-form-label text-md-right">Province(Propinsi)</label>
+
+        <div class="col-md-6">
+            <input id="province" type="text" class="form-control @error('province') is-invalid @enderror"
+            name="province" value="{{ isset($vendor->province ) ? $vendor->province :  old('province') }}">
+            @error('province')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="districts"
+        class="col-md-4 col-form-label text-md-right">Districts(Kabupaten)</label>
+
+        <div class="col-md-6">
+            <input id="districts" type="text" class="form-control @error('districts') is-invalid @enderror"
+            name="districts" value="{{ isset($vendor->districts ) ? $vendor->districts :  old('districts') }}">
+            @error('districts')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="no_telp_office"
+        class="col-md-4 col-form-label text-md-right">No Telp Office</label>
+
+        <div class="col-md-6">
+            <input id="no_telp_office" type="text" class="form-control @error('no_telp_office') is-invalid @enderror"
+            name="no_telp_office" value="{{ isset($vendor->no_telp_office ) ? $vendor->no_telp_office :  old('no_telp_office') }}">
+            @error('no_telp_office')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="no_telp_hp"
+        class="col-md-4 col-form-label text-md-right">No Telp HP</label>
+
+        <div class="col-md-6">
+            <input id="no_telp_hp" type="text" class="form-control @error('no_telp_hp') is-invalid @enderror"
+            name="no_telp_hp" value="{{ isset($vendor->no_telp_hp ) ? $vendor->no_telp_hp :  old('no_telp_hp') }}">
+            @error('no_telp_hp')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="email"
+        class="col-md-4 col-form-label text-md-right">Email</label>
+
+        <div class="col-md-6">
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+            name="email" value="{{ isset($vendor->email ) ? $vendor->email :  old('email') }}">
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="link_maps"
+        class="col-md-4 col-form-label text-md-right">Link GMaps</label>
+        <div class="col-md-6">
+            <input id="link_maps" type="text" class="form-control @error('link_maps') is-invalid @enderror"
+            name="link_maps" value="{{ isset($vendor->link_maps ) ? $vendor->link_maps :  old('link_maps') }}">
+            @error('link_maps')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="link_website"
+        class="col-md-4 col-form-label text-md-right">Link Website</label>
+        <div class="col-md-6">
+            <input id="link_website" type="text" class="form-control @error('link_website') is-invalid @enderror"
+            name="link_website" value="{{ isset($vendor->link_website ) ? $vendor->link_website :  old('link_website') }}">
+            @error('link_website')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="kapasitas_produksi"
+        class="col-md-4 col-form-label text-md-right">Kapasitas Produksi(TON)</label>
+        <div class="col-md-6">
+            <input id="kapasitas_produksi" type="text" class="form-control @error('kapasitas_produksi') is-invalid @enderror"
+            name="kapasitas_produksi" value="{{ isset($vendor->kapasitas_produksi ) ? $vendor->kapasitas_produksi :  old('kapasitas_produksi') }}">
+            @error('kapasitas_produksi')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="latitude"
+        class="col-md-4 col-form-label text-md-right">Latitude</label>
+        <div class="col-md-6">
+            <input id="latitude" type="text" class="form-control @error('latitude') is-invalid @enderror"
+            name="latitude" value="{{ isset($vendor->latitude ) ? $vendor->latitude :  old('latitude') }}">
+            @error('latitude')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="longitude"
+        class="col-md-4 col-form-label text-md-right">Longitude</label>
+        <div class="col-md-6">
+            <input id="longitude" type="text" class="form-control @error('longitude') is-invalid @enderror"
+            name="longitude" value="{{ isset($vendor->longitude ) ? $vendor->longitude :  old('longitude') }}">
+            @error('longitude')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+
+
+    <div class="form-group row mb-0">
+        <div class="col-md-8 offset-md-4">
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </div>
+    </div>
+    {!! Form::close() !!}
+
+</div>
+
+@endsection
