@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Stockpile;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
-     /**
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -49,4 +52,5 @@ class HomeController extends Controller
 
         return view('home', compact('stockpileJson'));
     }
+
 }

@@ -37,10 +37,15 @@
             <h1 class="col-6" style="font-family: Arial, Helvetica, sans-serif;"><b>@yield('title')</b></h1>
             <div class="card" style="background-color:#393b53;width:40%;border-radius:3rem">
                 <div class="row">
-
+                    <form id="formLogout" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    </form>
                     <h1 class="mt-3"
                     style="font-family: Arial, Helvetica, sans-serif;color:white;margin-left:auto;margin-right:15%">{{ Auth::user()->name }}</h1>
-                    <a style="font-size:300%;margin-right: 10%;color:white" href="{{ route('logout') }}"> &#x27BE</a>
+
+                    <a style="font-size:300%;margin-right: 10%;color:white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('formLogout').submit();"> &#x27BE</a>
+
                 </div>
             </div>
         </div>

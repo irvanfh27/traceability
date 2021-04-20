@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +36,7 @@ Route::prefix('home')->middleware('auth')->group(function () {
 
     Route::resource('document', DocumentController::class);
     Route::resource('category', CategoryDocumentController::class);
+
 
 });
 
