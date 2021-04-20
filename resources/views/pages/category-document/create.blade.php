@@ -16,7 +16,7 @@
 
         <div class="col-md-6">
             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-            name="name" value="{{ isset($category->name ) ? $category->name :  old('name') }}">
+            name="name" value="{{ isset($category->name) ? $category->name :  old('name') }}">
             @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

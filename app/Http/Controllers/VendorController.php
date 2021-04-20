@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CategoryDocument;
 use App\Http\Resources\MapResource;
 use App\Http\Resources\SupplierResource;
+use App\Province;
 use App\Vendor;
 use App\VendorDetail;
 use Illuminate\Http\Request;
@@ -66,8 +67,9 @@ class VendorController extends Controller
         // return request()->route()->parameters;
         $vendor = VendorDetail::where('vendor_id', $id)->first();
         $vendorHeader = Vendor::findOrFail($id);
+        $province = Province::all();
 
-        return view('pages.vendor.create', compact('vendor', 'vendorHeader'));
+        return view('pages.vendor.create', compact('vendor', 'vendorHeader','province'));
     }
 
     public function apiMaps($stockpileId)

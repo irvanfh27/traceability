@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Districts;
 use App\Stockpile;
 use App\User;
 use Illuminate\Http\Request;
@@ -52,5 +53,13 @@ class HomeController extends Controller
 
         return view('home', compact('stockpileJson'));
     }
+
+    public function districts(Request $request)
+    {
+        $districts = Districts::select('id','nama as text')->where('provinsi_id', $request->provinceId)->get();
+
+        return response()->json($districts);
+    }
+
 
 }

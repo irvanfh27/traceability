@@ -85,7 +85,15 @@ class Vendor extends Model
         return number_format($production,2);
     }
 
+    public function getDistrictNameAttribute()
+    {
+        return isset($this->detail->district_name) ? $this->detail->district_name : "";
+    }
 
+    public function getProvinceNameAttribute()
+    {
+        return isset($this->detail->province_name) ? $this->detail->province_name : "";
+    }
 
     /**
     * Get all documents of the Vendor

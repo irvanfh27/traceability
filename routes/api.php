@@ -31,5 +31,6 @@ Route::name('api.')->group(function (){
 
     Route::get('supplierMaps/{stockpileId}', 'VendorController@apiMaps')->name('supplierMaps');
     Route::get('stockpileMaps', 'StockpileController@apiMaps')->name('stockpileMaps');
+    Route::post('districts', 'HomeController@districts')->name('districts');
 
 });

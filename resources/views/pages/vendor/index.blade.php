@@ -32,8 +32,8 @@
                     <th scope="row">{{$row->vendor_id}}</th>
                     <td>{{$row->vendor_name}}</td>
                     <td>{{$row->vendor_address}}</td>
-                    <td>{{isset($row->detail->province) ? $row->detail->province : ''}}</td>
-                    <td>{{isset($row->detail->districts) ? $row->detail->districts : ''}}</td>
+                    <td>{{ $row->province_name}}</td>
+                    <td>{{ $row->district_name}}</td>
                     <td>{{isset($row->detail->kapasitas_produksi) ? $row->detail->kapasitas_produksi : ''}}</td>
                     <td>{{isset($row->detail->latitude) ? $row->detail->latitude : ''}}</td>
                     <td>{{isset($row->detail->longitude) ? $row->detail->longitude : ''}}</td>
