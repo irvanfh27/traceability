@@ -37,10 +37,10 @@
                 <td>{{$row->longitude}}</td>
                 <td><a class="btn btn-primary" href="{{ route('stockpile.show',$row->stockpile_id) }}">Details</a>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal"
+                    {{-- <button type="button" class="btn btn-success" data-toggle="modal"
                     data-target="#exampleModal">
                     Edit
-                </button>
+                </button> --}}
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

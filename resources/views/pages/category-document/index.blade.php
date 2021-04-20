@@ -11,6 +11,7 @@
             <tr>
                 <th>#</th>
                 <th scope="col">Name</th>
+                <th scope="col">For</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
             <tr>
                 <th scope="row">{{ $no++ }}</th>
                 <td>{{$row->name}}</td>
+                <td>{{ $row->category_for_name }}</td>
                 <td>
                     <a class="btn btn-success" href="{{ route('category.edit',$row->id) }}">Edit</a>
                 </td>
