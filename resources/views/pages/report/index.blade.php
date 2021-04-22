@@ -9,9 +9,9 @@
                 <th scope="col">Vendor</th>
                 <th scope="col">Document</th>
                 <th scope="col">Percentage Document</th>
-                <th scope="col">Collection(TON)</th>
-                <th scope="col">Total Production(TON)</th>
-                <th scope="col">Colection Rate</th>
+                {{-- <th scope="col">Collection(TON)</th> --}}
+                {{-- <th scope="col">Total Production(TON)</th> --}}
+                {{-- <th scope="col">Colection Rate</th> --}}
                 <th scope="col">Follow Up Date</th>
                 <th scope="col">Follow Up Status</th>
             </tr>
@@ -26,9 +26,9 @@
                 <td>{{$row->vendor_name}}</td>
                 <td>{{$row->total_document}}</td>
                 <td>{{$row->percentage_document}}</td>
-                <td>{{ $row->collection_ton}}</td>
-                <td>{{ $row->kapasitas_produksi_ton }}</td>
-                <td>{{$row->collection_rate}}</td>
+                {{-- <td>{{ $row->collection_ton}}</td> --}}
+                {{-- <td>{{ $row->kapasitas_produksi_ton }}</td> --}}
+                {{-- <td>{{$row->collection_rate}}</td> --}}
                 <td>{{ isset($row->latestFollowUp->date_follow_up) ? $row->latestFollowUp->date_follow_up : ""}}</td>
                 <td>{{ isset($row->latestFollowUp->keterangan) ? $row->latestFollowUp->keterangan : ""}}</td>
             </tr>
@@ -42,12 +42,13 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var table = $('#table').DataTable({
-            dom: 'Bfrtip',
+            dom: 'lfrtBp',
             buttons: [
             'excelHtml5',
             'pdfHtml5'
             ],
             "ordering": false,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
         });
 
     });

@@ -3,9 +3,6 @@
 @section('content')
 <div class="card mt-3 mr-5" style="border-radius: 2rem;padding:15px 15px 15px 15px">
     @include('layouts.flash_errors')
-    <div class="col-md-5">
-        <a href="{{ route('category.create') }}" class="btn btn-primary"> Add Category</a>
-    </div>
     <table id="table" class="table">
         <thead>
             <tr>
@@ -37,10 +34,16 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var table = $('#table').DataTable({
-            dom: 'frtBp',
+            dom: 'Bfrtlp',
             buttons: [
-            'csv'
-            ]
+            {
+                text: 'Add Category',
+                attr: {class: 'btn btn-primary'},
+                action: function ( e, dt, node, config ) {
+                    window.location = '{{ route('category.create') }}';
+                }
+            }
+        ]
         });
     });
 </script>

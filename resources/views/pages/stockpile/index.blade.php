@@ -119,13 +119,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var table = $('#table').DataTable({
-            dom: 'frtBp',
-            buttons: [
-            'excel'
-            ],
-            "ordering": false,
-        });
+        var table = $('#table').DataTable();
 
     });
 </script>

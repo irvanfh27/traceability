@@ -51,12 +51,7 @@
 @push('js')
     <script type="text/javascript">
         $(document).ready(function () {
-            var table = $('#table').DataTable({
-                dom: 'frtBp',
-                buttons: [
-                    'csv'
-                ]
-            });
+            var table = $('#table').DataTable();
         });
     </script>
 @endpush

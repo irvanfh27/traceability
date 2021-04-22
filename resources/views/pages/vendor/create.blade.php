@@ -17,6 +17,14 @@
             disabled>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="vendor_address" class="col-md-4 col-form-label text-md-right">Vendor Address</label>
+
+        <div class="col-md-6">
+            <input id="vendor_address" type="text" class="form-control " name="" value="{{ $vendorHeader->vendor_address }}"
+            disabled>
+        </div>
+    </div>
     @endisset
 
 
