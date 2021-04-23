@@ -35,7 +35,10 @@
                 <td>{{$row->stockpile_kabupaten}}</td>
                 <td>{{$row->latitude}}</td>
                 <td>{{$row->longitude}}</td>
-                <td><a class="btn btn-primary" href="{{ route('stockpile.show',$row->stockpile_id) }}">Details</a>
+                <td>
+                    <a class="btn btn-primary" href="{{ route('stockpile.show',$row->stockpile_id) }}">Detail</a>
+                    <a class="btn btn-success" href="{{ route('stockpile.edit',$row->stockpile_id) }}">Edit</a>
+
                     <!-- Button trigger modal -->
                     {{-- <button type="button" class="btn btn-success" data-toggle="modal"
                     data-target="#exampleModal">

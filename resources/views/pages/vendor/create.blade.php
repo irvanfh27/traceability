@@ -21,8 +21,8 @@
         <label for="vendor_address" class="col-md-4 col-form-label text-md-right">Vendor Address</label>
 
         <div class="col-md-6">
-            <input id="vendor_address" type="text" class="form-control " name="" value="{{ $vendorHeader->vendor_address }}"
-            disabled>
+            <input id="vendor_address" type="text" class="form-control " name=""
+            value="{{ $vendorHeader->vendor_address }}" disabled>
         </div>
     </div>
     @endisset
@@ -208,10 +208,10 @@
 <script>
     $('#province').select2({
         placeholder: 'Select Province',
-        allowClear: true,
+        allowClear: true
     });
 
-    @isset($vendor->districts)
+    @isset($vendor->province)
     $('#districts').select2({
         placeholder: 'Select Districts',
         allowClear: true,
@@ -221,9 +221,8 @@
             data: {
                 provinceId: '{{ $vendor->province }}'
             },
+            dataType: 'json',
             processResults: function(response) {
-                $('#districts').val(1102);
-                $('#districts').trigger('change');
                 return {
                     results: response
                 };
@@ -231,39 +230,40 @@
             cache: true
         }
     });
+    @else
+    $('#districts').select2({
+        placeholder: 'Select Districts',
+        allowClear: true
+    });
     @endisset
 
 
-    // $('#districts').select2({
-        //     ajax: {
-            //         url: '{{ route('api.districts') }}',
-            //         method: 'POST',
-            //         data: {
-                //             provinceId: '{{ $vendor->province }}'
-                //         },
-                //         processResults: function(response) {
-                    //             return {
-                        //                 results: response
-                        //             };
-                        //         },
-                        //         cache: true
-                        //     }
-                        // });
+    $('#province').on('change', function() {
 
-                        // $('#districts').select2({
-                            //     placeholder: 'Select Districts',
-                            //     allowClear: true
-                            // });
+        $('#districts').select2({
+            placeholder: 'Select Districts',
+            allowClear: true,
+            ajax: {
+                url: '{{ route('api.districts') }}',
+                method: 'POST',
+                data: {
+                    provinceId: $(this).val()
+                },
+                dataType: 'json',
+                processResults: function(response) {
+                    return {
+                        results: response
+                    };
+                },
+                cache: true
+            }
+        });
 
-                            $('#province').on('change', function() {
+    });
 
+</script>
+@endpush
 
-
-                            });
-
-                        </script>
-                        @endpush
-
-                        @push('css')
-                        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-                        @endpush
+@push('css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush

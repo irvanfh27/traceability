@@ -33,16 +33,29 @@
 
         <div class="col-md-6 card">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner" style="height:500px;">
+                <div class="carousel-inner">
+                    @isset($stockpile->photo_1)
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset('img/bglogin.png') }}" alt="First slide">
+                        <img class="d-block w-100" src="{{ $stockpile->photo_1 }}" height="500px" alt="First slide">
                     </div>
+                    @endisset
+
+                    @isset($stockpile->photo_2)
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('img/stockpile.png') }}" alt="Second slide">
+                        <img class="d-block w-100" src="{{ $stockpile->photo_2 }}" height="500px" alt="Second slide">
                     </div>
+                    @endisset
+                    @isset($stockpile->photo_3)
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('img/stockpile.png') }}" alt="Third slide">
+                        <img class="d-block w-100" src="{{ $stockpile->photo_3 }}" height="500px" alt="Third slide">
                     </div>
+                    @endisset
+
+                    @isset($stockpile->photo_4)
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{{ $stockpile->photo_4 }}" height="500px" alt="Fourth slide">
+                    </div>
+                    @endisset
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -54,7 +67,7 @@
                 </a>
             </div>
         </div>
-        
+
     </div>
 
 

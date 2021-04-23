@@ -82,7 +82,7 @@
                 $document_no = $doc->document_no;
                 $document_date = $doc->document_date;
                 $expired_date = $doc->expired_date;
-                $department = $doc->department;
+            $department = $doc->department;
                 $document_pic = $doc->document_pic;
                 $remarks = $doc->remarks;
                 $statusName = $doc->statusName;

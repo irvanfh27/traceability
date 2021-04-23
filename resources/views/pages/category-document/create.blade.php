@@ -3,7 +3,7 @@
 @section('content')
 <div class="card mt-3 mr-5" style="border-radius: 2rem;padding:15px 15px 15px 15px">
     @include('layouts.flash_errors')
-    @isset($category))
+    @isset($category)
     {!! Form::model($category, ['route' => ['category.update', $category->id], 'method' => 'patch']) !!}
     @else
     {!! Form::open(['route' => 'category.store']) !!}
