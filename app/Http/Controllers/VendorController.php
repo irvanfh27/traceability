@@ -9,6 +9,7 @@ use App\Province;
 use App\Vendor;
 use App\VendorDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VendorController extends Controller
 {
@@ -32,11 +33,51 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $vendor = VendorDetail::where('vendor_id', $request->vendor_id)->first();
+        $input = $request->except(['_token']);
+        $photo1 = $request->file('photo1');
+        $photo2 = $request->file('photo2');
+        $photo3 = $request->file('photo3');
+        $photo4 = $request->file('photo4');
+        if ($photo1) {
+            $filenameWithExt1 = $photo1->getClientOriginalName();
+            $filename1 = pathinfo($filenameWithExt1, PATHINFO_FILENAME);
+            $extension1 = $photo1->getClientOriginalExtension();
+            $filenameSimpan1 = $filename1 . '_' . time() . '.' . $extension1;
+            $path1 = $photo1->storeAs('public/photos/supplier', $filenameSimpan1);
+            $input['photo_1'] = url(Storage::url('photos/supplier/').$filenameSimpan1);
+        }
+
+        if ($photo2) {
+            $filenameWithExt2 = $photo2->getClientOriginalName();
+            $filename2 = pathinfo($filenameWithExt2, PATHINFO_FILENAME);
+            $extension2 = $photo2->getClientOriginalExtension();
+            $filenameSimpan2 = $filename2 . '_' . time() . '.' . $extension2;
+            $path2 = $photo2->storeAs('public/photos/supplier', $filenameSimpan2);
+            $input['photo_2'] = url(Storage::url('photos/supplier/').$filenameSimpan2);
+        }
+
+        if ($photo3) {
+            $filenameWithExt3 = $photo3->getClientOriginalName();
+            $filename3 = pathinfo($filenameWithExt3, PATHINFO_FILENAME);
+            $extension3 = $photo3->getClientOriginalExtension();
+            $filenameSimpan3 = $filename3 . '_' . time() . '.' . $extension3;
+            $path3 = $photo3->storeAs('public/photos/supplier', $filenameSimpan3);
+            $input['photo_3'] = url(Storage::url('photos/supplier/').$filenameSimpan3);
+        }
+
+        if ($photo4) {
+            $filenameWithExt4 = $photo4->getClientOriginalName();
+            $filename4 = pathinfo($filenameWithExt4, PATHINFO_FILENAME);
+            $extension4 = $photo4->getClientOriginalExtension();
+            $filenameSimpan4 = $filename4 . '_' . time() . '.' . $extension4;
+            $path4 = $photo4->storeAs('public/photos/supplier', $filenameSimpan4);
+            $input['photo_4'] = url(Storage::url('photos/supplier/').$filenameSimpan4);
+        }
 
         if (isset($vendor)) {
-            VendorDetail::where('vendor_id', $request->vendor_id)->update($request->except(['_token']));
+            VendorDetail::where('vendor_id', $request->vendor_id)->update($input);
         } else {
-            VendorDetail::create($request->except(['_token']));
+            VendorDetail::create($input);
         }
 
         return redirect()->route('vendor.index');

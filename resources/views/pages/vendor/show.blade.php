@@ -2,46 +2,88 @@
 @section('title', 'Vendor Detail')
 
 @section('content')
-<table class="table mt-3" style="width:90%">
-    <tbody>
-        <tr>
-            <th scope="col">Vendor Name</th>
-            <td>{{$vendor->vendor_name}}</td>
-            <td> <a class="btn btn-success" href="{{ route('vendor.edit',$vendor->vendor_id) }}">Edit Supplier</a></td>
-        </tr>
-        <tr>
-            <th scope="col">PIC</th>
-            <td>{{ isset($vendor->detail->pic_name) ? $vendor->detail->pic_name : ''}}</td>
-        </tr>
-        <tr>
-            <th scope="row"> Vendor Address</th>
-            <td>{{$vendor->vendor_address}}</td>
-        </tr>
-        <tr>
-            <th scope="row">Office Phone Number</th>
-            <td>{{ isset($vendor->detail->no_telp_office) ? $vendor->detail->no_telp_office : '' }}</td>
-        </tr>
-        <tr>
-            <th scope="row">Mobile Phone</th>
-            <td>{{ isset($vendor->detail->no_telp_hp ) ? $vendor->detail->no_telp_hp  : '' }}</td>
-        </tr>
+<div class="row">
+    <div class="col-md-6 card">
+        <table class="table mt-3">
+            <tbody>
+                <tr>
+                    <th scope="col">Vendor Name</th>
+                    <td>{{$vendor->vendor_name}}</td>
+                    <td> <a class="btn btn-success" href="{{ route('vendor.edit',$vendor->vendor_id) }}">Edit Supplier</a></td>
+                </tr>
+                <tr>
+                    <th scope="col">PIC</th>
+                    <td>{{ isset($vendor->detail->pic_name) ? $vendor->detail->pic_name : ''}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"> Vendor Address</th>
+                    <td>{{$vendor->vendor_address}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Office Phone Number</th>
+                    <td>{{ isset($vendor->detail->no_telp_office) ? $vendor->detail->no_telp_office : '' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Mobile Phone</th>
+                    <td>{{ isset($vendor->detail->no_telp_hp ) ? $vendor->detail->no_telp_hp  : '' }}</td>
+                </tr>
 
-        <tr>
-            <th scope="row">Email/surel</th>
-            <td>{{ isset($vendor->detail->email) ? $vendor->detail->email : '' }}</td>
+                <tr>
+                    <th scope="row">Email/surel</th>
+                    <td>{{ isset($vendor->detail->email) ? $vendor->detail->email : '' }}</td>
 
-        </tr>
-        <tr>
-            <th scope="row">Website/situs web</th>
-            <td>{{ isset($vendor->detail->link_website) ? $vendor->detail->link_website : '' }}</td>
-        </tr>
+                </tr>
+                <tr>
+                    <th scope="row">Website/situs web</th>
+                    <td>{{ isset($vendor->detail->link_website) ? $vendor->detail->link_website : '' }}</td>
+                </tr>
 
-        <tr>
-            <th scope="row">Production Capacity</th>
-            <td>{{ isset($vendor->detail->kapasitas_produksi) ? $vendor->detail->kapasitas_produksi : '' }}</td>
-        </tr>
-    </tbody>
-</table>
+                <tr>
+                    <th scope="row">Production Capacity</th>
+                    <td>{{ isset($vendor->detail->kapasitas_produksi) ? $vendor->detail->kapasitas_produksi : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6 card">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @isset($vendor->detail->photo_1)
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{ $vendor->detail->photo_1 }}" height="500px" alt="First slide">
+                </div>
+                @endisset
+
+                @isset($vendor->detail->photo_2)
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ $vendor->detail->photo_2 }}" height="500px" alt="Second slide">
+                </div>
+                @endisset
+                @isset($vendor->detail->photo_3)
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ $vendor->detail->photo_3 }}" height="500px" alt="Third slide">
+                </div>
+                @endisset
+
+                @isset($vendor->detail->photo_4)
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ $vendor->detail->photo_4 }}" height="500px" alt="Fourth slide">
+                </div>
+                @endisset
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+</div>
 <div class="col-md-6">
     @include('layouts.flash_errors')
 </div>
@@ -82,7 +124,7 @@
                 $document_no = $doc->document_no;
                 $document_date = $doc->document_date;
                 $expired_date = $doc->expired_date;
-            $department = $doc->department;
+                $department = $doc->department;
                 $document_pic = $doc->document_pic;
                 $remarks = $doc->remarks;
                 $statusName = $doc->statusName;
@@ -169,18 +211,30 @@
 @endsection
 
 @push('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         var table = $('#table1').DataTable({
             dom: 'frtBp',
             buttons: []
         });
-    });
-    $(document).ready(function () {
-        var table = $('#table2').DataTable({
+
+        var table2 = $('#table2').DataTable({
             dom: 'frtBp',
             buttons: []
         });
+
+        $('#carouselExampleControls').carousel({
+            interval: 2000
+        })
     });
+
 </script>
 @endpush

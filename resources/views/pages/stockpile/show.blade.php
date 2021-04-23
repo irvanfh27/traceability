@@ -31,7 +31,7 @@
             </table>
         </div>
 
-        <div class="col-md-6 card">
+        {{-- <div class="col-md-6 card">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     @isset($stockpile->photo_1)
@@ -66,7 +66,7 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 
