@@ -35,7 +35,7 @@
                 <td>{{$row->stockpile_kabupaten}}</td>
                 <td>{{$row->latitude}}</td>
                 <td>{{$row->longitude}}</td>
-                <td>
+                <td width="120px">
                     <a class="btn btn-primary" href="{{ route('stockpile.show',$row->stockpile_id) }}">Detail</a>
                     <a class="btn btn-success" href="{{ route('stockpile.edit',$row->stockpile_id) }}">Edit</a>
 
@@ -46,7 +46,7 @@
                 </button> --}}
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </td>
     </tr>
