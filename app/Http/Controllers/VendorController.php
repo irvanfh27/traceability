@@ -33,11 +33,12 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $vendor = VendorDetail::where('vendor_id', $request->vendor_id)->first();
-        $input = $request->except(['_token']);
+        $input = $request->except(['_token','photo1','photo2','photo3','photo4']);
         $photo1 = $request->file('photo1');
         $photo2 = $request->file('photo2');
         $photo3 = $request->file('photo3');
         $photo4 = $request->file('photo4');
+
         if ($photo1) {
             $filenameWithExt1 = $photo1->getClientOriginalName();
             $filename1 = pathinfo($filenameWithExt1, PATHINFO_FILENAME);
