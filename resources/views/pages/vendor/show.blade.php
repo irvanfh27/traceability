@@ -174,9 +174,9 @@
         <div class="ml-5">
             <b style="font-size: 30px">Follow UP</b>
         </div>
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <a href="{{ route('followUp.supplier',request()->route()->vendor) }}" class="btn btn-primary">Add Follow Up</a>
-        </div>
+        </div> --}}
     </div>
 
     <table class="table mt-3" style="width:90%" id="table2">
@@ -222,13 +222,19 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 <script type="text/javascript">
     $(document).ready(function () {
         var table = $('#table1').DataTable({
-            dom: 'frtBp',
+            dom: 'lfrtip',
             buttons: []
         });
 
         var table2 = $('#table2').DataTable({
-            dom: 'frtBp',
-            buttons: []
+            dom: 'Bfrtlp',
+            buttons:[{
+                text: 'Add Follow Up',
+                attr: {class: 'btn btn-primary'},
+                action: function ( e, dt, node, config ) {
+                    window.location = '{{ route('followUp.supplier',request()->route()->vendor) }}';
+                }
+            }]
         });
 
         $('#carouselExampleControls').carousel({
