@@ -196,9 +196,9 @@
         <div class="col-md-6">
             <input type="file" class="form-control @error('photo1') is-invalid @enderror" name="photo1">
             @error('photo1')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -209,9 +209,9 @@
         <div class="col-md-6">
             <input type="file" class="form-control @error('photo2') is-invalid @enderror" name="photo2">
             @error('photo2')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -222,9 +222,9 @@
         <div class="col-md-6">
             <input type="file" class="form-control @error('photo3') is-invalid @enderror" name="photo3">
             @error('photo3')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -235,9 +235,9 @@
         <div class="col-md-6">
             <input type="file" class="form-control @error('photo4') is-invalid @enderror" name="photo4">
             @error('photo4')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -263,7 +263,7 @@
 
     @isset($vendor->province)
     $('#districts').select2({
-        placeholder: 'Select Districts',
+        placeholder: '{{ $vendor->district_name }}',
         allowClear: true,
         ajax: {
             url: '{{ route('api.districts') }}',
