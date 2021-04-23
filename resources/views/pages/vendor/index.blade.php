@@ -38,7 +38,7 @@
                     <td>{{isset($row->detail->latitude) ? $row->detail->latitude : ''}}</td>
                     <td>{{isset($row->detail->longitude) ? $row->detail->longitude : ''}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('vendor.show',$row->vendor_id) }}">Details</a>
+                        <a class="btn btn-primary" href="{{ route('vendor.show',$row->vendor_id) }}">Detail</a>
                         <!-- Button trigger modal -->
                         <a class="btn btn-success" href="{{ route('vendor.edit',$row->vendor_id) }}">Edit</a>
                     </td>
