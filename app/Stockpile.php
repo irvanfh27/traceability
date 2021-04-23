@@ -18,10 +18,7 @@ class Stockpile extends Model
         'stockpile_link',
         'latitude',
         'longitude',
-        'photo_1',
-        'photo_2',
-        'photo_3',
-        'photo_4',
+        'url_cctv',
         'updated_by'
     ];
 

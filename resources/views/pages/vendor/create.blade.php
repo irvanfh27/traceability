@@ -191,6 +191,56 @@
     </div>
 
 
+    <div class="form-group row">
+        <label for="photo1" class="col-md-4 col-form-label text-md-right">Photo 1</label>
+        <div class="col-md-6">
+            <input type="file" class="form-control @error('photo1') is-invalid @enderror" name="photo1">
+            @error('photo1')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="photo2" class="col-md-4 col-form-label text-md-right">Photo 2</label>
+        <div class="col-md-6">
+            <input type="file" class="form-control @error('photo2') is-invalid @enderror" name="photo2">
+            @error('photo2')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="photo3" class="col-md-4 col-form-label text-md-right">Photo 3</label>
+        <div class="col-md-6">
+            <input type="file" class="form-control @error('photo3') is-invalid @enderror" name="photo3">
+            @error('photo3')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="photo4" class="col-md-4 col-form-label text-md-right">Photo 4</label>
+        <div class="col-md-6">
+            <input type="file" class="form-control @error('photo4') is-invalid @enderror" name="photo4">
+            @error('photo4')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
 
     <div class="form-group row mb-0">
         <div class="col-md-8 offset-md-4">
