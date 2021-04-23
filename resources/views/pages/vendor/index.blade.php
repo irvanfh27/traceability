@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Vendor')
+@section('title', 'Supplier')
 @section('content')
     <div class="card mt-3 mr-5" style="border-radius: 2rem;padding:15px 15px 15px 15px">
         <table id="table" class="table">

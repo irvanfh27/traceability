@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Vendor Detail')
+@section('title', 'Supplier Detail')
 
 @section('content')
 <div class="row">
@@ -7,7 +7,7 @@
         <table class="table mt-3">
             <tbody>
                 <tr>
-                    <th scope="col">Vendor Name</th>
+                    <th scope="col">Supplier Name</th>
                     <td>{{$vendor->vendor_name}}</td>
                     <td> <a class="btn btn-success" href="{{ route('vendor.edit',$vendor->vendor_id) }}">Edit Supplier</a></td>
                 </tr>
@@ -16,7 +16,7 @@
                     <td>{{ isset($vendor->detail->pic_name) ? $vendor->detail->pic_name : ''}}</td>
                 </tr>
                 <tr>
-                    <th scope="row"> Vendor Address</th>
+                    <th scope="row">Supplier Address</th>
                     <td>{{$vendor->vendor_address}}</td>
                 </tr>
                 <tr>
