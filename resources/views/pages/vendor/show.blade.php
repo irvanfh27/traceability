@@ -2,7 +2,7 @@
 @section('title', 'Supplier Detail')
 
 @section('content')
-<div class="row">
+<div class="row mt-3">
     <div class="col-md-6 card">
         <table class="table mt-3">
             <tbody>
@@ -50,7 +50,7 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-toggle="modal" data-target="#exampleModal">
             <div class="carousel-inner">
                 @isset($vendor->detail->photo_1)
-                <div class="active">
+                <div class="carousel-item active">
                     <img class="d-block w-100" src="{{ $vendor->detail->photo_1 }}" height="350px" alt="First slide">
                 </div>
                 @endisset
