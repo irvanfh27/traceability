@@ -136,7 +136,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="document_pic" class="col-md-4 col-form-label text-md-right">Nama Pejabat Yang</label>
+    <label for="document_pic" class="col-md-4 col-form-label text-md-right">Nama Pejabat Yang Menandatangani</label>
 
     <div class="col-md-6">
         <input id="document_pic" type="text" class="form-control @error('document_pic') is-invalid @enderror"

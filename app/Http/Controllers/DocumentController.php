@@ -48,7 +48,6 @@ class DocumentController extends Controller
                 'document_date' => 'required',
                 'category_id' => 'required',
                 'department' => 'required',
-                'expired_date' => 'required',
                 'file' => 'required|mimes:pdf',
             ];
         }else{
