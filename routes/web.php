@@ -26,7 +26,8 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::resource('stockpile', StockpileController::class);
     Route::resource('vendor', VendorController::class);
     Route::resource('followUp', FollowUPDocumentController::class);
-    Route::resource('report', ReportController::class);
+    Route::get('report-supplier', 'ReportController@index')->name('report.supplier');
+    Route::get('report-stockpile', 'ReportController@reportStockpile')->name('report.stockpile');
 
     Route::get('vendor/{vendorId}/followUp', [App\Http\Controllers\FollowUPDocumentController::class, 'create'])->name('followUp.supplier');
 

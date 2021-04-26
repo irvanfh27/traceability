@@ -95,6 +95,11 @@ class Vendor extends Model
         return isset($this->detail->province_name) ? $this->detail->province_name : "";
     }
 
+    public function getDocumentTotalAttribute()
+    {
+        return isset($this->documents) ? $this->documents->count() : 0;
+    }
+
     /**
     * Get all documents of the Vendor
     *

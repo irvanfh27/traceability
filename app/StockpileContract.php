@@ -15,6 +15,16 @@ class StockpileContract extends Model
         return $this->contract->count();
     }
 
+    public function getVendorNameAttribute()
+    {
+        return $this->contract->vendor_name;
+    }
+
+    public function getTotalDocumentVendorAttribute()
+    {
+        return $this->contract->document_total;
+    }
+
     /**
      * Get the transaction that owns the StockpileContract
      *

@@ -33,4 +33,8 @@ Route::name('api.')->group(function (){
     Route::get('stockpileMaps', 'StockpileController@apiMaps')->name('stockpileMaps');
     Route::post('districts', 'HomeController@districts')->name('districts');
 
+    // Route::get('stockpile/{id}', function ($id) {
+    //     return Stockpile::where('stockpile_id',$id)->first();
+    // });
+
 });

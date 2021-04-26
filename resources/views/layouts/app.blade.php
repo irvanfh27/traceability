@@ -29,7 +29,9 @@
         {{-- <a href="{{ route('document.index') }}" title="Document"><img class="imgg" src="{{asset('img/report.png')}}"></a> --}}
         <a href="{{ route('category.index') }}" title="Category"><i class="fa fa-navicon" style="font-size:48px; color: white;"></i></a>
 
-        <a href="{{ route('report.index') }}" title="Report"><img class="imgg" src="{{asset('img/report.png')}}"></a>
+        <a href="{{ route('report.supplier') }}" title="Report Supplier"><img class="imgg" src="{{asset('img/report.png')}}"></a>
+        <a href="{{ route('report.stockpile') }}" title="Report Stockpile"><img class="imgg" src="{{asset('img/report.png')}}"></a>
+
     </div>
 
     <div class="main">
