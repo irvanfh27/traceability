@@ -47,67 +47,92 @@
     </div>
 
     <div class="col-md-6 card">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-toggle="modal" data-target="#exampleModal">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 @isset($vendor->detail->photo_1)
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-toggle="modal" data-target="#exampleModal">
                     <img class="d-block w-100" src="{{ $vendor->detail->photo_1 }}" height="350px" alt="First slide">
                 </div>
                 @endisset
+
+                @isset($vendor->detail->photo_2)
+                <div class="carousel-item"  data-toggle="modal" data-target="#exampleModal">
+                    <img class="d-block w-100" src="{{ $vendor->detail->photo_2 }}" height="100%" width="100%" alt="Second slide">
+                </div>
+                @endisset
+                @isset($vendor->detail->photo_3)
+                <div class="carousel-item"  data-toggle="modal" data-target="#exampleModal">
+                    <img class="d-block w-100" src="{{ $vendor->detail->photo_3 }}" height="100%" width="100%" alt="Third slide">
+                </div>
+                @endisset
+
+                @isset($vendor->detail->photo_4)
+                <div class="carousel-item"  data-toggle="modal" data-target="#exampleModal">
+                    <img class="d-block w-100" src="{{ $vendor->detail->photo_4 }}" height="100%" width="100%" alt="Fourth slide">
+                </div>
+                @endisset
             </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
 
     <div class="modal fade bd-example-modal-lg custom" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div id="carouselExample" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        @isset($vendor->detail->photo_1)
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ $vendor->detail->photo_1 }}" height="100%" width="100%" alt="First slide">
-                        </div>
-                        @endisset
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @isset($vendor->detail->photo_1)
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="{{ $vendor->detail->photo_1 }}" height="100%" width="100%" alt="First slide">
+                            </div>
+                            @endisset
 
-                        @isset($vendor->detail->photo_2)
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ $vendor->detail->photo_2 }}" height="100%" width="100%" alt="Second slide">
-                        </div>
-                        @endisset
-                        @isset($vendor->detail->photo_3)
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ $vendor->detail->photo_3 }}" height="100%" width="100%" alt="Third slide">
-                        </div>
-                        @endisset
+                            @isset($vendor->detail->photo_2)
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ $vendor->detail->photo_2 }}" height="100%" width="100%" alt="Second slide">
+                            </div>
+                            @endisset
+                            @isset($vendor->detail->photo_3)
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ $vendor->detail->photo_3 }}" height="100%" width="100%" alt="Third slide">
+                            </div>
+                            @endisset
 
-                        @isset($vendor->detail->photo_4)
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ $vendor->detail->photo_4 }}" height="100%" width="100%" alt="Fourth slide">
+                            @isset($vendor->detail->photo_4)
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ $vendor->detail->photo_4 }}" height="100%" width="100%" alt="Fourth slide">
+                            </div>
+                            @endisset
                         </div>
-                        @endisset
+                        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
 </div>
 <div class="col-md-6">
