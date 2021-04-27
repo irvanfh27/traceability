@@ -52,10 +52,10 @@
 
         <table id="tableSupplier" class="table table-sm mt-2 ml-2">
             <thead>
-                <tr style="font-size:120%">
+                <tr style="font-size:18px">
                     <th scope="col">Supplier Name</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Production Capacity</th>
+                    <th scope="col" width="180px">Production Capacity</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
