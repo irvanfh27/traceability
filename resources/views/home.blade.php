@@ -52,17 +52,14 @@
 
         <table id="tableSupplier" class="table table-sm mt-2 ml-2">
             <thead>
-                <tr>
+                <tr style="font-size:120%">
                     <th scope="col">Supplier Name</th>
                     <th scope="col">Address</th>
                     <th scope="col">Production Capacity</th>
                     <th scope="col">Action</th>
-
-                    {{-- <th scope="col">Longitude</th> --}}
-                    {{-- <th scope="col">Action</th> --}}
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-size:100%">
             </tbody>
         </table>
     </div>
@@ -71,6 +68,7 @@
 @endsection
 @push('css')
 <style>
+    td { font-size: 13px; }
     /* .markers {
         background-image: url("https://cdn1.iconfinder.com/data/icons/free-98-icons/32/map-marker-128.png");
         background-size: cover;
