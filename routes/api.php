@@ -37,4 +37,8 @@ Route::name('api.')->group(function (){
     //     return Stockpile::where('stockpile_id',$id)->first();
     // });
 
+    Route::prefix('report')->name('report.')->group(function(){
+         Route::get('supplier', 'APIController@reportSupplier')->name('supplier');
+         Route::get('stockpile', 'APIController@reportStockpile')->name('stockpile');
+    });
 });

@@ -37,7 +37,5 @@ Route::prefix('home')->middleware('auth')->group(function () {
 
     Route::resource('document', DocumentController::class);
     Route::resource('category', CategoryDocumentController::class);
-
-
 });
 

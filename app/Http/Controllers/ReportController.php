@@ -10,16 +10,12 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $vendors = Vendor::all();
-
-        return view('pages.report.supplier-document', compact('vendors'));
+        return view('pages.report.supplier-report');
     }
 
     public function reportStockpile()
     {
-        $stockpiles = Stockpile::all();
-
-        return view('pages.report.stockpile-document', compact('stockpiles'));
+        return view('pages.report.stockpile-report');
     }
 
 }
