@@ -1,16 +1,17 @@
 @extends('layouts.app')
-@section('title', 'Reports Stockpile')
+@section('title', 'Report Progress Document')
 @section('content')
     <div class="card mt-3 mr-5" style="border-radius: 2rem;padding:15px 15px 15px 15px">
         <table id="table" class="table">
             <thead>
             <tr>
                 <th scope="col">Stockpile</th>
-                <th scope="col">Total PKS yang harus di follow up</th>
-                <th scope="col">PKS Followed Up</th>
-                <th scope="col">PKS Response</th>
-                <th scope="col">Jumlah Doc terkumpul</th>
-                <th scope="col">% Progress</th>
+                <th scope="col">JUMLAH PKS YANG TELAH MENERIMA LIST DOKUMEN</th>
+                {{-- <th scope="col">NAMA PKS</th> --}}
+                <th scope="col">JUMLAH PKS YANG TELAH MENGIRIMKAN KELENGKAPAN DOKUMEN</th>
+                <th scope="col">Jumlah Document terkumpul</th>
+                {{-- <th scope="col">Komentar</th> --}}
+                {{-- <th scope="col">Persentase %</th> --}}
             </tr>
             </thead>
             <tbody>
@@ -25,14 +26,12 @@
             var table = $('#table').DataTable({
                 dom: 'lfrtBp',
                 deferRender: true,
-                "ajax": "{{ route('report.stockpile') }}",
+                "ajax": "{{ route('report.document') }}",
                 "columns": [
-                    {"data": "stockpile_name"},
-                    {"data": "pks_not_followed_up"},
-                    {"data": "pks_followed_up"},
-                    {"data": "pks_response"},
+                    {"data": "stockpile"},
+                    {"data": "pks_get_list_doc"},
+                    {"data": "pks_send_doc_total"},
                     {"data": "total_document"},
-                    {"data": "progress"},
                 ],
                 buttons: [
                     'excelHtml5',

@@ -20,7 +20,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::prefix('home')->middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('stockpile', StockpileController::class);
@@ -28,6 +27,9 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::resource('followUp', FollowUPDocumentController::class);
     Route::get('report-supplier', 'ReportController@index')->name('report.supplier');
     Route::get('report-stockpile', 'ReportController@reportStockpile')->name('report.stockpile');
+    Route::get('report-document', 'ReportController@reportDocument')->name('report.document');
+    Route::get('report-document/detail', 'ReportController@detailReportDocument')->name('report.document.detail');
+    Route::post('vendor/{vendorId}/document','ReportController@importDocument')->name('document.import');
 
     Route::get('vendor/{vendorId}/followUp', [App\Http\Controllers\FollowUPDocumentController::class, 'create'])->name('followUp.supplier');
 

@@ -10,6 +10,11 @@ class Contract extends Model
     protected $primaryKey = 'contract_id';
 
 
+    public function getStockpileNameAttribute()
+    {
+        return $this->stockpileContract->stockpile_name;
+    }
+
     public function getVendorNameAttribute()
     {
         return $this->vendor->vendor_name;

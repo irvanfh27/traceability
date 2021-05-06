@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CategoryDocument;
+use App\Http\Resources\StockpileResource;
 use App\Stockpile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,10 +17,14 @@ class StockpileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $stock = Stockpile::all();
-        return view('pages.stockpile.index', compact('stock'));
+        if ($request->ajax()) {
+            return [
+                'aaData' => StockpileResource::collection(Stockpile::all())
+            ];
+        }
+        return view('pages.stockpile.index');
     }
 
     /**
@@ -84,7 +89,6 @@ class StockpileController extends Controller
 
         $input = $request->all();
 
-    
 
         $input['updated_by'] = auth()->user()->id;
 

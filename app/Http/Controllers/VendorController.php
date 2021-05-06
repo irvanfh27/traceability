@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CategoryDocument;
 use App\Http\Resources\MapResource;
 use App\Http\Resources\SupplierResource;
+use App\Http\Resources\VendorResource;
 use App\Province;
 use App\Vendor;
 use App\VendorDetail;
@@ -18,10 +19,18 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vendors = Vendor::all();
-        return view('pages.vendor.index', compact('vendors'));
+
+        if ($request->ajax()) {
+            $vendor = Vendor::select('vendor_id', 'vendor_name', 'vendor_address')->get();
+
+            return [
+                'aaData' => VendorResource::collection($vendor)
+            ];
+        }
+
+        return view('pages.vendor.index');
     }
 
     /**
@@ -33,7 +42,7 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $vendor = VendorDetail::where('vendor_id', $request->vendor_id)->first();
-        $input = $request->except(['_token','photo1','photo2','photo3','photo4']);
+        $input = $request->except(['_token', 'photo1', 'photo2', 'photo3', 'photo4']);
         $photo1 = $request->file('photo1');
         $photo2 = $request->file('photo2');
         $photo3 = $request->file('photo3');
@@ -45,7 +54,7 @@ class VendorController extends Controller
             $extension1 = $photo1->getClientOriginalExtension();
             $filenameSimpan1 = $filename1 . '_' . time() . '.' . $extension1;
             $path1 = $photo1->storeAs('public/photos/supplier', $filenameSimpan1);
-            $input['photo_1'] = url(Storage::url('photos/supplier/').$filenameSimpan1);
+            $input['photo_1'] = url(Storage::url('photos/supplier/') . $filenameSimpan1);
         }
 
         if ($photo2) {
@@ -54,7 +63,7 @@ class VendorController extends Controller
             $extension2 = $photo2->getClientOriginalExtension();
             $filenameSimpan2 = $filename2 . '_' . time() . '.' . $extension2;
             $path2 = $photo2->storeAs('public/photos/supplier', $filenameSimpan2);
-            $input['photo_2'] = url(Storage::url('photos/supplier/').$filenameSimpan2);
+            $input['photo_2'] = url(Storage::url('photos/supplier/') . $filenameSimpan2);
         }
 
         if ($photo3) {
@@ -63,7 +72,7 @@ class VendorController extends Controller
             $extension3 = $photo3->getClientOriginalExtension();
             $filenameSimpan3 = $filename3 . '_' . time() . '.' . $extension3;
             $path3 = $photo3->storeAs('public/photos/supplier', $filenameSimpan3);
-            $input['photo_3'] = url(Storage::url('photos/supplier/').$filenameSimpan3);
+            $input['photo_3'] = url(Storage::url('photos/supplier/') . $filenameSimpan3);
         }
 
         if ($photo4) {
@@ -72,7 +81,7 @@ class VendorController extends Controller
             $extension4 = $photo4->getClientOriginalExtension();
             $filenameSimpan4 = $filename4 . '_' . time() . '.' . $extension4;
             $path4 = $photo4->storeAs('public/photos/supplier', $filenameSimpan4);
-            $input['photo_4'] = url(Storage::url('photos/supplier/').$filenameSimpan4);
+            $input['photo_4'] = url(Storage::url('photos/supplier/') . $filenameSimpan4);
         }
 
         if (isset($vendor)) {
@@ -111,7 +120,7 @@ class VendorController extends Controller
         $vendorHeader = Vendor::findOrFail($id);
         $province = Province::all();
 
-        return view('pages.vendor.create', compact('vendor', 'vendorHeader','province'));
+        return view('pages.vendor.create', compact('vendor', 'vendorHeader', 'province'));
     }
 
     public function apiMaps($stockpileId)

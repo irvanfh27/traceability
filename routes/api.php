@@ -20,14 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
 Route::name('api.')->group(function (){
     Route::get('supplier/{stockpileId}','VendorController@supplierByStockpile')->name('supplierByStockpile');
 
-    Route::get('stockpile', function () {
-        return [
-            'aaData' => Stockpile::all()
-        ];
-    })->name('stockpile');
+//    Route::get('stockpile', function () {
+//        return [
+//            'aaData' => Stockpile::all()
+//        ];
+//    })->name('stockpile');
 
     Route::get('supplierMaps/{stockpileId}', 'VendorController@apiMaps')->name('supplierMaps');
     Route::get('stockpileMaps', 'StockpileController@apiMaps')->name('stockpileMaps');
@@ -36,9 +38,9 @@ Route::name('api.')->group(function (){
     // Route::get('stockpile/{id}', function ($id) {
     //     return Stockpile::where('stockpile_id',$id)->first();
     // });
-
-    Route::prefix('report')->name('report.')->group(function(){
-         Route::get('supplier', 'APIController@reportSupplier')->name('supplier');
-         Route::get('stockpile', 'APIController@reportStockpile')->name('stockpile');
-    });
+//
+//    Route::prefix('report')->name('report.')->group(function(){
+//         Route::get('supplier', 'APIController@reportSupplier')->name('supplier');
+//         Route::get('stockpile', 'APIController@reportStockpile')->name('stockpile');
+//    });
 });

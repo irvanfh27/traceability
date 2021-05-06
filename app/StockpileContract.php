@@ -25,6 +25,11 @@ class StockpileContract extends Model
         return $this->contract->document_total;
     }
 
+    public function getStockpileNameAttribute()
+    {
+       return $this->stockpile->stockpile_name;
+    }
+
     /**
      * Get the transaction that owns the StockpileContract
      *

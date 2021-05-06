@@ -129,7 +129,7 @@
 @push('js')
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 {{--    <script type="text/javascript"--}}
-{{--            src="https://flashphoner.com/downloads/builds/flashphoner_client/wcs_api-2.0/current/flashphoner.js"></script>--}}
+{{--            src="https://cdn.jsdelivr.net/npm/vxgplayer@1.8.31/vxgplayer-1.8.31.min.js"></script>--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>

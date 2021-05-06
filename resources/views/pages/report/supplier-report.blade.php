@@ -27,7 +27,7 @@
             var table = $('#tableSupplierReport').DataTable({
                 dom: 'lfrtBp',
                 deferRender: true,
-                "ajax": "{{ route('api.report.supplier') }}",
+                "ajax": "{{ route('report.supplier') }}",
                 "columns": [
                     {"data": "vendor"},
                     {"data": "total_document"},
