@@ -9,6 +9,7 @@ use App\Http\Resources\VendorResource;
 use App\Province;
 use App\Vendor;
 use App\VendorDetail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -101,6 +102,8 @@ class VendorController extends Controller
      */
     public function show($id)
     {
+
+        // return Carbon::createFrom(41356)->toDateTimeString();
         $vendor = Vendor::with('documents')->findOrFail($id);
         $category = CategoryDocument::where('category_for', 1)->get();
 

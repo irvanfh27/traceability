@@ -11,6 +11,7 @@ use App\Imports\DocumentImport;
 use App\MasterDocument;
 use App\Vendor;
 use App\Stockpile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -82,7 +83,7 @@ class ReportController extends Controller
         {
             $collection = Excel::toCollection(new DocumentImport($vendorId), $r->file('file'));
             $document = MasterDocument::where('vendor_id', $vendorId)->count();
-
+            // return $collection;
             if($document > 1){
                 return redirect()->route('vendor.show',$vendorId)->with(['error' => 'Error Import Document, Because Already Imported!']);
             }else{
@@ -97,15 +98,15 @@ class ReportController extends Controller
                         $documentStatus = 0;
                     }
 
-                    if ($row['tanggal_dokumen'] == '') {
+                    if ($row['tanggal_dokumen'] == '' || $row['tanggal_dokumen'] == '-') {
                         $documentDate = NULL;
                     } else {
-                        $documentDate = NULL;
+                        $documentDate = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_dokumen']));
                     }
-                    if ($row['tanggal_kadaluarsa'] == '-') {
+                    if ($row['tanggal_kadaluarsa'] == '' || $row['tanggal_kadaluarsa'] == '-') {
                         $expiredDate = NULL;
                     } else {
-                        $expiredDate = NULL;
+                        $expiredDate = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal_kadaluarsa']));
                     }
                     MasterDocument::create([
                         'category_id' => $row['no'],

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::post('vendor/{vendorId}/document','ReportController@importDocument')->name('document.import');
 
 
 Route::name('api.')->group(function (){
