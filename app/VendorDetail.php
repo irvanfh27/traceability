@@ -16,11 +16,13 @@ class VendorDetail extends Model
     public function getDocumentStatusNameAttribute()
     {
         if ($this->document_status == 1) {
-            return 'PKS TELAH MENERIMA LIST DOKUMEN';
+            return '<span class="badge badge-info" style="font-size: 13px;color:white">PKS TELAH MENERIMA LIST DOKUMEN</span>';
         } elseif ($this->document_status == 2) {
-            return 'PKS TELAH MENGIRIMKAN KELENGKAPAN DOKUMEN';
+            return '<span class="badge badge-success" style="font-size: 13px;color:white">PKS TELAH MENGIRIMKAN KELENGKAPAN DOKUMEN</span>';
+        }elseif($this->document_status == 3){
+            return '<span class="badge badge-danger" style="font-size: 13px;color:white">PKS MENOLAK MENGIRIMKAN KELENGKAPAN DOKUMEN</span>';
         } else {
-            return 'PKS BELUM MENERIMA LIST DOKUMEN';
+            return '<span class="badge badge-default" style="font-size: 13px;color:white">PKS BELUM MENERIMA LIST DOKUMEN</span>';
         }
     }
 

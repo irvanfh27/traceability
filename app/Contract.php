@@ -12,7 +12,7 @@ class Contract extends Model
 
     public function getStockpileNameAttribute()
     {
-        return $this->stockpileContract->stockpile_name;
+        return isset($this->stockpileContract->stockpile_name) ? $this->stockpileContract->stockpile_name : 'NULL';
     }
 
     public function getVendorNameAttribute()

@@ -34,6 +34,7 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::get('vendor/{vendorId}/followUp', [App\Http\Controllers\FollowUPDocumentController::class, 'create'])->name('followUp.supplier');
 
     Route::get('vendor/{vendorId}/document/{categoryId}', [App\Http\Controllers\DocumentController::class, 'create'])->name('document.supplier');
+    Route::post('vendor/{vendorId}/documentStatus', 'DocumentController@updateStatusDocument')->name('document.status');
 
     Route::get('stockpile/{stockpileId}/document/{categoryId}', [App\Http\Controllers\DocumentController::class, 'createDocumentStockpile'])->name('document.stockpile');
 

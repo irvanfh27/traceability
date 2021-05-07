@@ -24,7 +24,7 @@ class Vendor extends Model
 
     public function getStockpileNameAttribute()
     {
-        return $this->contract->stockpile_name;
+        return isset($this->contract->stockpile_name) ? $this->contract->stockpile_name : 'NULL';
     }
     /**
      * Status String
@@ -89,7 +89,7 @@ class Vendor extends Model
      */
     public function getPercentageDocumentAttribute()
     {
-        $totalSupplierDoc = $this->documents->count();
+        $totalSupplierDoc = $this->total_document;
         $totalDoc = CategoryDocument::where('category_for', 1)->get()->count();
         $totalPercent = $totalSupplierDoc / $totalDoc * 100;
 
@@ -166,7 +166,8 @@ class Vendor extends Model
 
     public function getDocumentTotalAttribute()
     {
-        return isset($this->documents) ? $this->documents->count() : 0;
+        // return isset($this->documents) ? $this->documents->count() : 0;
+        return isset($this->documents) ? $this->documents->whereNotNull('document_no')->whereNotNull('document_date')->count() : 0;
     }
 
     /**

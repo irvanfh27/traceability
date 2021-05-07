@@ -41,6 +41,22 @@ class Stockpile extends Model
 
     }
 
+
+    /**
+     * Jumlah PKS Memiliki Document
+     * @return int
+     */
+    public function getPksHasAnyDocAttribute(): int
+    {
+        $q = DB::select("SELECT c.vendor_id FROM stockpile_contract as sc
+        LEFT JOIN contract as c ON c.contract_id = sc.contract_id
+        RIGHT JOIN master_document as md ON md.vendor_id = c.vendor_id
+        WHERE sc.stockpile_id = '$this->stockpile_id'
+        AND md.document_no IS NOT NULL AND md.document_date IS NOT NULL
+        GROUP BY c.vendor_id");
+        return isset($q) ? count($q) : 0;
+    }
+
     /**
      * Jumlah Document terkumpul
      * @return int
@@ -77,6 +93,20 @@ class Stockpile extends Model
 
 
     /**
+     * JUMLAH PKS YANG TELAH MENOLAK MENGIRIMKAN  KELENGKAPAN DOKUMEN
+     * @return int
+     */
+    public function getTotalRejectAttribute()
+    {
+        $q = DB::select("SELECT vd.vendor_id as id FROM stockpile_contract as sc
+        LEFT JOIN contract as c ON c.contract_id = sc.contract_id
+        RIGHT JOIN  vendor_detail as vd ON vd.vendor_id = c.vendor_id
+        WHERE sc.stockpile_id = '$this->stockpile_id' AND vd.document_status = 3
+        GROUP BY c.vendor_id");
+        return isset($q) ? count($q) : 0;
+    }
+
+    /**
      * JUMLAH PKS YANG TELAH MENGIRIMKAN  KELENGKAPAN DOKUMEN
      * @return int
      */
@@ -99,7 +129,7 @@ class Stockpile extends Model
         $q = DB::select("SELECT vd.vendor_id as id FROM stockpile_contract as sc
         LEFT JOIN contract as c ON c.contract_id = sc.contract_id
         RIGHT JOIN  vendor_detail as vd ON vd.vendor_id = c.vendor_id
-        WHERE sc.stockpile_id = '$this->stockpile_id' AND vd.document_status IN (1,2)
+        WHERE sc.stockpile_id = '$this->stockpile_id' AND vd.document_status IN (1,2,3)
         GROUP BY c.vendor_id");
         return isset($q) ? count($q) : 0;
     }

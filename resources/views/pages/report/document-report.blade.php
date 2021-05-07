@@ -6,12 +6,10 @@
             <thead>
             <tr>
                 <th scope="col">Stockpile</th>
-                <th scope="col">JUMLAH PKS YANG TELAH MENERIMA LIST DOKUMEN</th>
-                {{-- <th scope="col">NAMA PKS</th> --}}
-                <th scope="col">JUMLAH PKS YANG TELAH MENGIRIMKAN KELENGKAPAN DOKUMEN</th>
+                <th scope="col">Jumlah PKS Yang Telah Menerima List Dokumen</th>
+                <th scope="col">Jumlah Pks Yang Telah Menerima Kelengkapan Dokumen</th>
                 <th scope="col">Jumlah Document terkumpul</th>
-                {{-- <th scope="col">Komentar</th> --}}
-                {{-- <th scope="col">Persentase %</th> --}}
+                <th scope="col">Jumlah PKS Menolak Mengumpulkan Document</th>
             </tr>
             </thead>
             <tbody>
@@ -32,6 +30,8 @@
                     {"data": "pks_get_list_doc"},
                     {"data": "pks_send_doc_total"},
                     {"data": "total_document"},
+                    {"data": "total_reject"},
+
                 ],
                 buttons: [
                     'excelHtml5',
