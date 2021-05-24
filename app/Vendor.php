@@ -83,6 +83,11 @@ class Vendor extends Model
 
     }
 
+    public function getTotalCatDocSupplierAttribute()
+    {
+        return CategoryDocument::where('category_for', 1)->get()->count();
+    }
+
     /**
      * Total Document Percent
      * @return string
@@ -90,7 +95,7 @@ class Vendor extends Model
     public function getPercentageDocumentAttribute()
     {
         $totalSupplierDoc = $this->total_document;
-        $totalDoc = CategoryDocument::where('category_for', 1)->get()->count();
+        $totalDoc = $this->TotalCatDocSupplier;
         $totalPercent = $totalSupplierDoc / $totalDoc * 100;
 
         return number_format($totalPercent, 2) . '%';
@@ -230,4 +235,13 @@ class Vendor extends Model
         return $this->hasMany(Contract::class, 'vendor_id', 'vendor_id');
     }
 
+    public function checkDocument($categoryId, $vendorId)
+    {
+        $document = MasterDocument::whereNotNull('document_no')->where('category_id', $categoryId)->where('vendor_id', $vendorId)->first();
+        if (isset($document)) {
+            return 'Ada';
+        }else{
+            return  '';
+        }
+    }
 }

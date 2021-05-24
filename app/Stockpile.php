@@ -57,6 +57,23 @@ class Stockpile extends Model
         return isset($q) ? count($q) : 0;
     }
 
+
+    /**
+     * Jumlah Document Terlampir
+     * @return int
+     */
+    public function getTotalDocumentFileAttribute(): int
+    {
+
+       $q = DB::select("SELECT c.vendor_id FROM stockpile_contract as sc
+        LEFT JOIN contract as c ON c.contract_id = sc.contract_id
+        RIGHT JOIN master_document as md ON md.vendor_id = c.vendor_id
+        WHERE sc.stockpile_id = '$this->stockpile_id'
+        AND md.file IS NOT NULL
+        GROUP BY c.vendor_id");
+        return isset($q) ? count($q) : 0;
+    }
+
     /**
      * Jumlah Document terkumpul
      * @return int

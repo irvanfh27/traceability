@@ -40,5 +40,8 @@ Route::prefix('home')->middleware('auth')->group(function () {
 
     Route::resource('document', DocumentController::class);
     Route::resource('category', CategoryDocumentController::class);
+    Route::get('/export/DocumentHasFile', function () {
+        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\DocumentHasFileReport(request()->stockpileId), 'Report-Document-Terlampir.xlsx');
+     })->name('export.documentHasFile');
 });
 

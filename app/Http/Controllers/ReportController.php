@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryDocument;
 use App\Http\Resources\DocumentReportDetailResource;
 use App\Http\Resources\DocumentReportResource;
 use App\Http\Resources\StockpileReportResource;
@@ -50,14 +51,35 @@ class ReportController extends Controller
     public function detailReportDocument(Request $request)
     {
         if ($request->q == 'receiveListDocument') {
-            $title = 'JUMLAH PKS YANG TELAH MENERIMA LIST DOKUMEN';
+            $title = 'Jumlah PKS Penerima Ceklist Dok';
         } elseif ($request->q == 'hasSentDocument') {
-            $title = 'JUMLAH PKS YANG TELAH MENGIRIMKAN  KELENGKAPAN DOKUMEN';
-        }elseif($request->q == 'hasAnyDocument'){
-            $title = 'JUMLAH PKS YANG TELAH MEMILIKI DOCUMENT';
+            $title = 'Jumlah PKS Merespon';
+        }elseif($request->q == 'hasAnyDocumentNo'){
+            $title = 'Jumlah Ceklist Dokumen Terkumpul';
+        }elseif($request->q == 'hasAnyDocumentFile'){
+            $title = 'Jumlah Dokumen Terlampir';
         }elseif($request->q == 'hasRejectDocument'){
-            $title = 'JUMLAH PKS YANG MENOLAK MENGIRIMKAN DOCUMENT';
+            $title = 'Jumlah PKS YANG MENOLAK';
         }
+
+        if($request->q == 'hasAnyDocumentFile'){
+            $stockpileId = $request->stockpileId;
+
+            $vendor = Vendor::whereHas('contract', function ($q) use ($stockpileId) {
+                $q->whereHas('stockpileContract', function ($qq) use ($stockpileId) {
+                    $qq->where('stockpile_id', $stockpileId);
+                });
+            })->whereHas('documents', function ($q) {
+                $q->whereNotNull('file');
+            })->get();
+
+            $sp = Stockpile::findOrFail($stockpileId);
+            $stockpile = $sp->stockpile_name;
+            $categories = CategoryDocument::where('category_for', 1)->get();
+            return view('pages.report.document-report-detail', compact('stockpile','categories','vendor','title'));
+
+        }
+
         if ($request->ajax()) {
             $stockpileId = $request->stockpileId;
             $query = $request->q;
@@ -78,7 +100,7 @@ class ReportController extends Controller
                     $q->where('document_status', 2);
                 });
                 $title = 'JUMLAH PKS YANG TELAH MENGIRIMKAN  KELENGKAPAN DOKUMEN';
-            }elseif($query == 'hasAnyDocument'){
+            }elseif($query == 'hasAnyDocumentNo'){
                 $vendor = $vendor->whereHas('documents', function ($q) {
                     $q->whereNotNull('document_no')->whereNotNull('document_date');
                 });
@@ -87,7 +109,6 @@ class ReportController extends Controller
                     $q->where('document_status', 3);
                 });
             }
-
             $vendor = $vendor->get();
 
             return [

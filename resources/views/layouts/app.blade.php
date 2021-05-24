@@ -40,7 +40,7 @@
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.supplier') }}">Supplier.</a>
-            <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.stockpile') }}">Stockpile.</a>
+            {{-- <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.stockpile') }}">Stockpile.</a> --}}
             <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.document') }}">Progress Doc.</a>
             {{--            <a style="font-size: 17px" class="dropdown-item" href="#"></a>--}}
         </div>
