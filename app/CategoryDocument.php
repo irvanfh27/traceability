@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CategoryDocument extends Model
 {
     protected $table = 'category_document';
-    protected $fillable = ['name','category_for'];
+    protected $fillable = ['name','category_for','number'];
 
     protected $appends = ['category_for_name'];
 

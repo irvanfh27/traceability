@@ -237,7 +237,7 @@ class Vendor extends Model
 
     public function checkDocument($categoryId, $vendorId)
     {
-        $document = MasterDocument::whereNotNull('document_no')->where('category_id', $categoryId)->where('vendor_id', $vendorId)->first();
+        $document = MasterDocument::whereNotNull('file')->where('category_id', $categoryId)->where('vendor_id', $vendorId)->first();
         if (isset($document)) {
             return 'Ada';
         }else{

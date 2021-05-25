@@ -44,9 +44,16 @@ class CategoryDocumentController extends Controller
 
         ]);
 
+        $cat = CategoryDocument::where('category_for',$request->category_for)->orderBy('number','desc')->first();
+
+
+        $catLastNo = $cat->number;
+        $no = $catLastNo + 1;
+
         $cat = CategoryDocument::create([
             'name' => $request->name,
-            'category_for' => $request->category_for
+            'category_for' => $request->category_for,
+            'number' => $no
         ]);
 
         if($request->next){
