@@ -155,11 +155,10 @@ class DocumentController extends Controller
                 'status' => $doc->status,
                 'created_by' => auth()->user()->id,
             ]);
+            $input = array_merge(['file' => $filenameSimpan], $request->except(['file', '_method', '_token']));
         } else {
-            $filenameSimpan = '';
+            $input =  $request->except(['file', '_method', '_token']);
         }
-
-        $input = array_merge(['file' => $filenameSimpan], $request->except(['file', '_method', '_token']));
 
         $doc = MasterDocument::where('id', $id)->update($input);
 
