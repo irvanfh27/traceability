@@ -12,12 +12,18 @@ use App\Imports\DocumentImport;
 use App\MasterDocument;
 use App\Vendor;
 use App\Stockpile;
+use App\VendorGroup;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
+    /**
+     * Supplier Report
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -28,6 +34,11 @@ class ReportController extends Controller
         return view('pages.report.supplier-report');
     }
 
+    /**
+     * Report Stockpile
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function reportStockpile(Request $request)
     {
         if ($request->ajax()) {
@@ -38,6 +49,11 @@ class ReportController extends Controller
         return view('pages.report.stockpile-report');
     }
 
+    /**
+     * List Report Progress Document
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function reportDocument(Request $request)
     {
         if ($request->ajax()) {
@@ -48,21 +64,26 @@ class ReportController extends Controller
         return view('pages.report.document-report');
     }
 
+    /**
+     * Detail Report Progress Document
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detailReportDocument(Request $request)
     {
         if ($request->q == 'receiveListDocument') {
             $title = 'Jumlah PKS Penerima Ceklist Dok';
         } elseif ($request->q == 'hasSentDocument') {
             $title = 'Jumlah PKS Merespon';
-        }elseif($request->q == 'hasAnyDocumentNo'){
+        } elseif ($request->q == 'hasAnyDocumentNo') {
             $title = 'Jumlah Ceklist Dokumen Terkumpul';
-        }elseif($request->q == 'hasAnyDocumentFile'){
+        } elseif ($request->q == 'hasAnyDocumentFile') {
             $title = 'Jumlah Dokumen Terlampir';
-        }elseif($request->q == 'hasRejectDocument'){
+        } elseif ($request->q == 'hasRejectDocument') {
             $title = 'Jumlah PKS YANG MENOLAK';
         }
 
-        if($request->q == 'hasAnyDocumentFile'){
+        if ($request->q == 'hasAnyDocumentFile') {
             $stockpileId = $request->stockpileId;
 
             $vendor = Vendor::whereHas('contract', function ($q) use ($stockpileId) {
@@ -76,7 +97,7 @@ class ReportController extends Controller
             $sp = Stockpile::findOrFail($stockpileId);
             $stockpile = $sp->stockpile_name;
             $categories = CategoryDocument::where('category_for', 1)->get();
-            return view('pages.report.document-report-detail', compact('stockpile','categories','vendor','title'));
+            return view('pages.report.document-report-detail', compact('stockpile', 'categories', 'vendor', 'title'));
 
         }
 
@@ -100,11 +121,11 @@ class ReportController extends Controller
                     $q->where('document_status', 2);
                 });
                 $title = 'JUMLAH PKS YANG TELAH MENGIRIMKAN  KELENGKAPAN DOKUMEN';
-            }elseif($query == 'hasAnyDocumentNo'){
+            } elseif ($query == 'hasAnyDocumentNo') {
                 $vendor = $vendor->whereHas('documents', function ($q) {
                     $q->whereNotNull('document_no')->whereNotNull('document_date');
                 });
-            }elseif($query == 'hasRejectDocument'){
+            } elseif ($query == 'hasRejectDocument') {
                 $vendor = $vendor->whereHas('detail', function ($q) {
                     $q->where('document_status', 3);
                 });
@@ -119,15 +140,20 @@ class ReportController extends Controller
         return view('pages.report.document-report-detail', compact('title'));
     }
 
-
+    /**
+     * Import Excel Document Data
+     * @param $vendorId
+     * @param Request $r
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function importDocument($vendorId, Request $r)
     {
         $collection = Excel::toCollection(new DocumentImport($vendorId), $r->file('file'));
         $document = MasterDocument::where('vendor_id', $vendorId)->count();
         // return $collection;
-        if($document > 1){
-            return redirect()->route('vendor.show',$vendorId)->with(['error' => 'Error Import Document, Because Already Imported!']);
-        }else{
+        if ($document > 1) {
+            return redirect()->route('vendor.show', $vendorId)->with(['error' => 'Error Import Document, Because Already Imported!']);
+        } else {
             foreach ($collection[1] as $row) {
                 $departmen = $row['instansi_yang_menerbitkan'];
                 $documentPIC = $row['nama_pejabat_yang_menandatangani'];
@@ -162,12 +188,22 @@ class ReportController extends Controller
                     'remarks' => $remarks,
                     'status' => 1,
                     'created_by' => auth()->user()->id,
-                    ]);
-                }
+                ]);
             }
-
-            return redirect()->route('vendor.show',$vendorId)->with(['success' => 'Success Import Document!']);
-
         }
 
+        return redirect()->route('vendor.show', $vendorId)->with(['success' => 'Success Import Document!']);
+
     }
+
+    /**
+     * @param Request $request
+     */
+    public function reportGroupSupplier(Request $request)
+    {
+        $vendorGroups = VendorGroup::all();
+
+        return view('pages.report.supplier-group-report',compact('vendorGroups'));
+    }
+
+}

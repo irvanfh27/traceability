@@ -14,13 +14,14 @@ class MapResource extends JsonResource
      */
     public function toArray($request)
     {
-        $long = isset($this->detail->longitude) ? $this->detail->longitude : $this->vendor_longitude;
-        $lat = isset($this->detail->latitude) ? $this->detail->latitude : $this->vendor_latitude;
+        $long = isset($this->detail->longitude) ? $this->detail->longitude : 0;
+        $lat = isset($this->detail->latitude) ? $this->detail->latitude : 0;
+        $distance = isset($this->detail->distance) ? $this->detail->distance / 1000 : 0;
 
         return [
             'type' => 'Feature',
             'properties' => [
-                'distance' => $this->distance / 1000 .' KM',
+                'distance' => number_format($distance,3) .' KM',
                 'vendor' => $this->vendor_name,
                 'title' => $this->vendor_name,
                 'address' => $this->vendor_address,

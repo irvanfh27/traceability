@@ -37,10 +37,12 @@ async function loadSupplier(stockpileId) {
         .setLngLat(geometry.coordinates)
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
         .setHTML(
-            '<h5>' +
+            '<h6>' +
             title +
-            '</h5>Collection : ' +
+            '</h6>Collection : ' +
             collection +
+            '<br>Distance To Stockpile : ' +
+            distance+
             '<br>Production Capacity : ' +
             kapasitas_produksi+
             '<br>Collection Rate : '+
