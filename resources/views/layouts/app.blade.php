@@ -42,8 +42,8 @@
             <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.supplier') }}">Supplier.</a>
             {{-- <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.stockpile') }}">Stockpile.</a> --}}
             <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.document') }}">Progress Doc.</a>
-            <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.supplier.group') }}">Supplier
-                Group.</a>
+            {{-- <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.supplier.group') }}">Supplier
+                Group.</a> --}}
 
             {{--            <a style="font-size: 17px" class="dropdown-item" href="#"></a>--}}
         </div>
