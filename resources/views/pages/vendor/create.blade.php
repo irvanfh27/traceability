@@ -47,7 +47,7 @@
 
         <div class="col-md-6">
             <select id="province" class="form-control @error('province') is-invalid @enderror" name="province">
-                <option value="NULL">Select Province</option>
+                <option value="">Select Province</option>
                 @foreach ($province as $item)
                 <option value="{{ $item->id }}" @php
                     if (isset($vendor->province) && $vendor->province == $item->id) {
