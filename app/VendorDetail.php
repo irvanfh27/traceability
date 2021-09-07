@@ -10,7 +10,7 @@ class VendorDetail extends Model
 
     protected $fillable = [
         'vendor_id', 'link_maps', 'latitude', 'longitude', 'districts', 'province', 'pic_name', 'no_telp_office', 'no_telp_hp', 'link_website', 'email',
-        'kapasitas_produksi', 'photo_1', 'photo_2', 'photo_3', 'photo_4','distance'
+        'kapasitas_produksi','ghg', 'photo_1', 'photo_2', 'photo_3', 'photo_4','distance'
     ];
 
     public function getDocumentStatusNameAttribute()

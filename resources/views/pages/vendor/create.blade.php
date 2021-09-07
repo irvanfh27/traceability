@@ -165,6 +165,20 @@
     </div>
 
     <div class="form-group row">
+        <label for="ghg" class="col-md-4 col-form-label text-md-right">GHG</label>
+        <div class="col-md-6">
+            <input id="ghg" type="text"
+            class="form-control @error('ghg') is-invalid @enderror" name="ghg"
+            value="{{ isset($vendor->ghg) ? $vendor->ghg : old('ghg') }}">
+            @error('ghg')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
         <label for="latitude" class="col-md-4 col-form-label text-md-right">Latitude</label>
         <div class="col-md-6">
             <input id="latitude" type="text" class="form-control @error('latitude') is-invalid @enderror"
