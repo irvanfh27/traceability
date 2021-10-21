@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
 
     @stack('css')
 </head>
@@ -42,6 +41,7 @@
             <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.supplier') }}">Supplier.</a>
             {{-- <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.stockpile') }}">Stockpile.</a> --}}
             <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.document') }}">Progress Doc.</a>
+            <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.pks.traceability') }}">PKS Traceability Report</a>
             {{-- <a style="font-size: 17px" class="dropdown-item" href="{{ route('report.supplier.group') }}">Supplier
                 Group.</a> --}}
 

@@ -35,6 +35,9 @@ Route::prefix('home')->middleware('auth')->group(function () {
     Route::get('report-document', 'ReportController@reportDocument')->name('report.document');
     Route::get('report-supplier-group', 'ReportController@reportGroupSupplier')->name('report.supplier.group');
 
+    Route::get('/selectSearchShipment', 'ReportController@selectSearchShipment')->name('search-shipment');
+    Route::get('report-pks-traceability', 'ReportController@pksTraceabilityReport')->name('report.pks.traceability');
+
     Route::get('report-document/detail', 'ReportController@detailReportDocument')->name('report.document.detail');
     Route::post('vendor/{vendorId}/document', 'ReportController@importDocument')->name('document.import');
 

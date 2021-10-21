@@ -207,4 +207,9 @@ class Stockpile extends Model
     {
         return $this->hasMany(StockpileContract::class, 'stockpile_id', 'stockpile_id');
     }
+
+    public function sales()
+    {
+        return $this->belongsTo(Sales::class, 'stockpile_id', 'stockpile_id');
+    }
 }
