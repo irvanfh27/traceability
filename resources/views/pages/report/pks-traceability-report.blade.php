@@ -222,7 +222,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($pks as $row)
+            @foreach($pks as $row)
             @php
                 if($row->slip_no >= 'SAM-0000000001' && $row->slip_no <= 'SAM-0000001925'){
 				$fc_pph = 4 ;
@@ -286,7 +286,7 @@
 				 $unloadingTotal = $row->unloading_total + $pphuc;
 
      			$totalCogs = $row->cogs_amount + $freightTotal + $unloadingTotal + $handlingTotal;
-				$ghgAmount = ($row->quantity / 1000) * $row->ghg;
+				//$ghgAmount = ($row->quantity / 1000) * $row->ghg;
             @endphp
             
             <tr>
@@ -300,7 +300,7 @@
             <td>{{ $row->vendor_code }} </td>
 			<td>{{ $row->sertifikat }} </td>
 			<td style="text-align: right;">{{ number_format($row->distance, 0, ".", ",") }} </td>
-            <td style="text-align: right;">{{ number_format($ghgAmount, 2, ".", ",") }} </td>
+            <td style="text-align: right;">{{ number_format($row->ghg, 2, ".", ",") }} </td>
 			
             <td>{{ $row->shipment_no }} </td>
 
@@ -313,13 +313,8 @@
 			<td>{{ $row->KodeTerima }} </td>
 			<td>{{ $row->tiketTimbang }} </td>
 			<td>{{ $row->contract_no }} </td>
-
             </tr>
-            @empty
-                <tr>
-                <td colspan="18" class="text-center">No data. Please select the shipment code first</td>
-                </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
     </div>
