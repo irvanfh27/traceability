@@ -24,7 +24,7 @@ class VendorController extends Controller
     {
 
         if ($request->ajax()) {
-            $vendor = Vendor::select('vendor_id', 'vendor_name', 'vendor_address')->get();
+            $vendor = Vendor::select('vendor_id', 'vendor_name', 'vendor_address')->where('active', 1)->get();
 
             return [
                 'aaData' => VendorResource::collection($vendor)
